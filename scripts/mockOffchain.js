@@ -25,6 +25,7 @@ async function mockKeepers() {
 //Mock VRF of chainlink for randomisation
 async function mockVrf(requestId, lottery) {
     console.log("We on a local network? Ok let's pretend...")
+    console.log(network.config.chainId)
     const vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock")
     await vrfCoordinatorV2Mock.fulfillRandomWords(requestId, lottery.address)
     console.log("Responded!")

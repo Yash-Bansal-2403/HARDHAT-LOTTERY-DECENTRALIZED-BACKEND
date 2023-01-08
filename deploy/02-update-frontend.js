@@ -3,8 +3,8 @@
 const { ethers, network } = require("hardhat");
 const fs = require('fs');
 
-const FRONTEND_ADDRESS_FILE = "../lottery nextjs frontend/constants/contractAddresses.json"
-const FRONTEND_ABI_FILE = "../lottery nextjs frontend/constants/abi.json"
+const FRONTEND_ADDRESS_FILE = "../NEXTJS-LOTTERY-DECENTRALIZED-FRONTEND/constants/contractAddresses.json"
+const FRONTEND_ABI_FILE = "../NEXTJS-LOTTERY-DECENTRALIZED-FRONTEND/constants/abi.json"
 
 async function updateAbi() {
     const lottery = await ethers.getContract('Lottery')
@@ -27,8 +27,8 @@ async function updateContractAddresses() {
 }
 module.exports = async function () {
     console.log('updating frontend...........')
-    updateContractAddresses()
-    updateAbi()
+    await updateContractAddresses()
+    await updateAbi()
     console.log('frontend updated !!')
 }
 module.exports.tags = ['all', 'frontend']
