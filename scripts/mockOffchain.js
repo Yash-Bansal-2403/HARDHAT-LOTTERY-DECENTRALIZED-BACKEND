@@ -5,8 +5,26 @@ const { ethers, network } = require("hardhat")
 //Mock Keepers of chainlink for automation
 async function mockKeepers() {
     const lottery = await ethers.getContract("Lottery")
+    const interval = await lottery.getInterval()
+    const lotteryState = await lottery.getLotteryState()
+    const numberofPlayers = await lottery.getNumberOfPlayers()
+    const lotteryBalance = await lottery.getLotteryBalance()
+
+
     const checkData = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(""))
+    if (network.config.chainId == 31337) {
+        console.log(`interval:${interval}`)
+        await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+        await network.provider.request({ method: "evm_mine", params: [] })
+    }
+
     const { upkeepNeeded } = await lottery.callStatic.checkUpkeep(checkData)
+    console.log(`upkeepneeded:${upkeepNeeded}`)
+    console.log(`lotteryState:${lotteryState}`)
+    console.log(`numberOfPlayers:${numberofPlayers}`)
+    console.log(`lotteryBalance:${lotteryBalance}`)
+
+
     if (upkeepNeeded) {
         const tx = await lottery.performUpkeep(checkData)
         const txReceipt = await tx.wait(1)
@@ -18,6 +36,7 @@ async function mockKeepers() {
             await mockVrf(requestId, lottery)
         }
     } else {
+        console.log(network.config.chainId)
         console.log("No upkeep needed!")
     }
 }
