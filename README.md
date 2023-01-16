@@ -28,7 +28,7 @@ npm hardhat deploy
 ## Testing
 
 ```
-npm hardhat test
+npx hardhat test
 ```
 
 # Deployment to a testnet or mainnet
@@ -55,12 +55,12 @@ Head over to [vrf.chain.link](https://vrf.chain.link/) and setup a new subscript
 
 4. Deploy
 
-In your `helper-hardhat-config.js` add your `subscriptionId` under the section of the chainId you're using (aka, if you're deploying to goerli, add your `subscriptionId` in the `subscriptionId` field under the `4` section.)
+In your `helper-hardhat-config.js` add your `subscriptionId` under the section of the chainId you're using (aka, if you're deploying to goerli, add your `subscriptionId` in the `subscriptionId` field under the `5` section.)
 
 Then run:
 
 ```
-npm hardhat deploy --network goerli
+npx hardhat deploy --network goerli
 ```
 
 And copy / remember the contract address.
@@ -82,7 +82,7 @@ Go to [keepers.chain.link](https://keepers.chain.link/new) and register a new up
 You're contract is now setup to be a tamper proof autonomous verifiably random lottery. Enter the lottery by running:
 
 ```
-npm hardhat run scripts/enter.js --network goerli
+npx hardhat run scripts/enter.js --network goerli
 ```
 
 ## Verify on etherscan
