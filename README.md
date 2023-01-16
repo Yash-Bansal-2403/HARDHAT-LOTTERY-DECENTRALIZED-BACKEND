@@ -94,7 +94,7 @@ In it's current state, if you have your api key set, it will auto verify goerli 
 However, you can manual verify with:
 
 ```
-npm hardhat verify --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS
+npx hardhat verify --constructor-args arguments.js DEPLOYED_CONTRACT_ADDRESS
 ```
 
 # Thank you!
